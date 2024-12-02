@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Mensagens</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+    <style>
+      .tabela-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        border: 1px solid #ccc;
+      }
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tbody tr:hover {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">
+          <img src="images/barco1.png" alt="ícone de barco" />
+          <div class="headtitle">
+            <h1>Luxo</h1>
+            <h2>Mensagens</h2>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="navmenu">
+            <li><a href="index.html">Página inicial</a></li>
+            <li><a href="aluguel.html">Aluguel de iates</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="tripulacao.html">Tripulação</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="admin.html">Admin</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="pagtitle">
+          <div class="bgtitle"></div>
+          <h2>Mensagens Recebidas</h2>
+        </div>
+
+        <div class="tabela-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Mensagem</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaMensagens">
+            </tbody>
+          </table>
+        </div>
+
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script>
+      function exibirMensagens() {
+        var mensagens = JSON.parse(localStorage.getItem('mensagens')) || [];
+        
+        var tbody = document.getElementById('tabelaMensagens');
+        
+        tbody.innerHTML = '';
+
+        mensagens.forEach(function(mensagem) {
+          var tr = document.createElement('tr');
+          
+          var tdNome = document.createElement('td');
+          tdNome.textContent = mensagem.nome;
+          
+          var tdEmail = document.createElement('td');
+          tdEmail.textContent = mensagem.email;
+          
+          var tdMensagem = document.createElement('td');
+          tdMensagem.textContent = mensagem.mensagem;
+
+          tr.appendChild(tdNome);
+          tr.appendChild(tdEmail);
+          tr.appendChild(tdMensagem);
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.onload = function() {
+        exibirMensagens();
+      };
+    </script>
+  </body>
+</html>

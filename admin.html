@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Admin</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">
+          <img src="images/barco1.png" alt="ícone de barco" />
+          <div class="headtitle">
+            <h1>Luxo</h1>
+            <h2>Administração</h2>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="navmenu">
+            <li><a href="index.html">Página inicial</a></li>
+            <li><a href="aluguel.html">Aluguel de iates</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="tripulacao.html">Tripulação</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="pagtitle">
+          <div class="bgtitle"></div>
+          <h2>Área Administrativa</h2>
+        </div>
+
+        <form id="formLogin">
+          <div class="entry">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required />
+          </div>
+
+          <div class="entry">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" required />
+          </div>
+
+          <div class="buttons">
+            <button type="submit" class="button">Entrar</button>
+          </div>
+        </form>
+
+        <p id="erro" style="color: red; display: none;">E-mail e Senha inválidos</p>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function validarUsuario(objLoginSenha) {
+        var usuarioValido = {
+          email: "admin@admin.com",
+          senha: "1234"
+        };
+
+        if (objLoginSenha.email === usuarioValido.email && objLoginSenha.senha === usuarioValido.senha) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      $('#formLogin').on('submit', function(event) {
+        event.preventDefault();
+
+        var objLoginSenha = {
+          email: $('#email').val(),
+          senha: $('#senha').val()
+        };
+
+        if (!objLoginSenha.email || !objLoginSenha.senha) {
+          $('#erro').text('Por favor, preencha todos os campos.').show();
+          return;
+        }
+
+        var sucesso = validarUsuario(objLoginSenha);
+
+        if (sucesso) {
+          window.location.href = 'mensagens.html';
+        } else {
+          $('#erro').text('E-mail e Senha inválidos').show();
+        }
+      });
+    </script>
+  </body>
+</html>
